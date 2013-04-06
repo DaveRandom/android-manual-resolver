@@ -1,0 +1,4 @@
+# Rewrite rule for heroku
+
+RewriteEngine On
+RewriteRule ^/?(?!public/index.php).* public/index.php?name=$0 [L,QSA]
