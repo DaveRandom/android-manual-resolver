@@ -30,7 +30,7 @@
     $urlCache   = new Cache($urlMap, $urlCacheFile, -1);
     $classCache = new Cache($classList, $classCacheFile, $classCacheTTL);
 
-    if (!isset($_GET['name']) && !isset($argv[1])) {
+    if (empty($_GET['name']) && !isset($argv[1])) {
         @header('HTTP/1.1 400 Bad Request');
         exit('No class specified');
     } else if (isset($_GET['name'])) {
@@ -59,7 +59,7 @@
         exit("Unable to locate class {$className}");
     }
 
-    if (isset($_GET['callback'])) {
+    if (!empty($_GET['callback'])) {
         $result =  $_GET['callback'] . '(' . json_encode(array('src' => $result)) . ')';
     }
 
